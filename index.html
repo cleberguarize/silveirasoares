@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<link rel="preload" as="image" href="assets/background01.webp" fetchpriority="high"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Silveira Soares – Gestão Tributária e Contábil</title>
+<meta name="description" content="Empresa de gestão Tributária e Contábil com mais de 20 anos de experiência e especializados em planejamento tributário para alcançar o melhor resultado para a sua empresa."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Geist:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Geist:wght@300;400;500;600;700&display=swap"/></noscript>
+<link rel="icon" href="assets/favicon.png" sizes="32x32"/>
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png"/>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        cream: '#F2EFEA',
+        dark: '#2C2824',
+        accent: '#8f393d',
+        gold: '#C48C56',
+        warmgray: '#26221E',
+      },
+      fontFamily: {
+        jakarta: ['"Plus Jakarta Sans"', 'sans-serif'],
+        geist: ['Geist', 'sans-serif'],
+      }
+    }
+  }
+}
+</script>
+<style>
+  :root { --mouse-x: 0px; --mouse-y: 0px; }
+  * { scroll-behavior: smooth; }
+  html { scroll-padding-top: 80px; }
+  body { font-family: 'Geist', sans-serif; }
+  ::selection { background: #2C2824; color: #F2EFEA; }
+
+  /* Letter slide-down animation */
+  @keyframes slideDownLetter {
+    0%   { transform: translateY(-120%); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+  .clip-text-container { display: inline-flex; overflow: hidden; vertical-align: bottom; }
+  .animate-letter {
+    display: inline-block;
+    transform: translateY(-120%);
+    opacity: 0;
+    animation: slideDownLetter 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Beam button effect */
+  @keyframes beam {
+    0%   { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+  .btn-beam { position: relative; z-index: 1; }
+  .btn-beam::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+    background-size: 200% 100%;
+    animation: beam 2s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    padding: 1px;
+  }
+  .btn-beam:hover::before { opacity: 1; }
+
+  /* Sonar ring effect */
+  @keyframes sonar {
+    0%   { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(2.5); opacity: 0; }
+  }
+  .sonar-ring {
+    position: absolute; inset: 0; border-radius: 50%;
+    border: 1px solid currentColor;
+    animation: sonar 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+    pointer-events: none;
+  }
+
+  /* Marquee */
+  @keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .marquee-mask {
+    mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+  }
+  .animate-marquee {
+    display: flex; width: max-content;
+    animation: marquee 45s linear infinite;
+  }
+
+  /* Service card with gradient border */
+  .service-card {
+    position: relative;
+    border-radius: 1.25rem;
+    background: linear-gradient(145deg, rgba(255,255,255,0.85), rgba(255,255,255,0.5));
+    backdrop-filter: blur(16px);
+    overflow: hidden;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease;
+  }
+  .service-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1.5px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(143,57,61,0.15), rgba(196,140,86,0.25), rgba(143,57,61,0.1));
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+    transition: background 0.4s ease;
+  }
+  .service-card:hover::before {
+    background: linear-gradient(135deg, rgba(143,57,61,0.4), rgba(196,140,86,0.5), rgba(143,57,61,0.3));
+  }
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 64px rgba(143,57,61,0.1), 0 8px 24px rgba(0,0,0,0.06);
+  }
+  .service-card .icon-wrapper {
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .service-card:hover .icon-wrapper {
+    transform: scale(1.12) rotate(-3deg);
+  }
+  .service-card .card-line {
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #8f393d, #C48C56);
+    border-radius: 99px;
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .service-card:hover .card-line {
+    width: 48px;
+  }
+
+  /* Service cards stacking effect */
+  .service-card-stack {
+    position: sticky;
+    top: var(--stack-top, 120px);
+    background: linear-gradient(145deg, rgba(242,239,234,0.97), rgba(242,239,234,0.92));
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+  }
+  .service-card-stack:hover {
+    box-shadow: 0 20px 60px rgba(143,57,61,0.08), 0 8px 24px rgba(0,0,0,0.04);
+  }
+
+  /* Flashlight card effect for non-service sections */
+  .card-flashlight {
+    position: relative; border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card-flashlight:hover {
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+  }
+  .card-flashlight::before {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.8), transparent 40%);
+    z-index: 0; opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
+  }
+  .card-flashlight::after {
+    content: ""; position: absolute; inset: 0; padding: 1px;
+    border-radius: inherit;
+    background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(0, 0, 0, 0.15), transparent 40%);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    z-index: 1; opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
+  }
+  .card-flashlight:hover::before, .card-flashlight:hover::after { opacity: 1; }
+  .card-content { position: relative; z-index: 2; }
+
+  /* Dark section flashlight cards */
+  .dark-section .card-flashlight {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .dark-section .card-flashlight::before {
+    background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.08), transparent 40%);
+  }
+  .dark-section .card-flashlight::after {
+    background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.4), transparent 40%);
+  }
+
+  .section-container { position: relative; }
+  .parallax-layer { will-change: transform; }
+
+  /* Scroll reveal – multiple animation types */
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-left { opacity: 0; transform: translateX(-50px); transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal-left.visible { opacity: 1; transform: translateX(0); }
+  .reveal-right { opacity: 0; transform: translateX(50px); transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal-right.visible { opacity: 1; transform: translateX(0); }
+  .reveal-scale { opacity: 0; transform: scale(0.92); transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+  /* Float animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+  .float-anim { animation: float 4s ease-in-out infinite; }
+
+  /* Video custom styling */
+  .video-wrapper { position: relative; border-radius: 1rem; overflow: hidden; }
+  .video-wrapper video {
+    width: 100%; display: block; border-radius: 1rem;
+    outline: none;
+  }
+  .video-wrapper::after {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: 1rem;
+    box-shadow: inset 0 0 60px rgba(0,0,0,0.3);
+    pointer-events: none;
+  }
+
+  /* Proper text wrapping - prevent orphans */
+  h1, h2, h3, h4, h5, p { text-wrap: pretty; }
+  .no-orphan { text-wrap: balance; }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #F2EFEA 0%, #C48C56 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Animated counter */
+  @keyframes countPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  /* Testimonial card special style */
+  .testimonial-card {
+    position: relative;
+    border-radius: 1.25rem;
+    background: linear-gradient(160deg, rgba(255,255,255,0.97), rgba(255,255,255,0.72));
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(143,57,61,0.08);
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.03);
+  }
+  .testimonial-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #8f393d, #C48C56);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .testimonial-card:hover::before {
+    opacity: 1;
+  }
+  .testimonial-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 28px 64px rgba(143,57,61,0.12), 0 4px 12px rgba(0,0,0,0.04);
+    border-color: rgba(143,57,61,0.18);
+  }
+  .testimonial-card .quote-mark {
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    font-size: 7rem;
+    line-height: 1;
+    font-family: 'Plus Jakarta Sans', serif;
+    color: rgba(143,57,61,0.06);
+    pointer-events: none;
+    font-weight: 800;
+    z-index: 0;
+  }
+
+  /* Testimonial carousel */
+  @keyframes testimonialScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .testimonial-track {
+    display: flex;
+    gap: 1.5rem;
+    width: max-content;
+    animation: testimonialScroll 48s linear infinite;
+    will-change: transform;
+  }
+  .testimonial-track:hover {
+    animation-play-state: paused;
+  }
+  .testimonial-carousel {
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  }
+
+  /* Stats number gradient */
+  .stat-number {
+    background: linear-gradient(135deg, #8f393d, #C48C56);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Navbar always fixed with glass effect */
+  .nav-scrolled {
+    background: rgba(44, 40, 36, 0.45) !important;
+    backdrop-filter: blur(24px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+  }
+  .nav-scrolled a:not(.btn-beam):not(.btn-neon), .nav-scrolled button:not(.btn-beam):not(.btn-neon) { color: #F2EFEA !important; }
+  .nav-scrolled .nav-logo { filter: brightness(1) saturate(1); }
+  .nav-glass {
+    background: rgba(44, 40, 36, 0.25);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* Dobra stacking – each section sticks and the next stacks over it */
+  .dobra {
+    position: sticky !important;
+    top: 0;
+  }
+  @media (max-width: 767px) {
+    .nav-glass {
+      background: rgba(44, 40, 36, 0.70);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+    }
+    #contato.dobra {
+      position: relative !important;
+    }
+    #contato {
+      padding-bottom: 6rem !important;
+    }
+  }
+  .dobra-1  { z-index: 1;  }
+  .dobra-2  { z-index: 2;  }
+  .dobra-3  { z-index: 3;  }
+  .dobra-4  { z-index: 4;  }
+  .dobra-5  { z-index: 5;  }
+  .dobra-6  { z-index: 6;  }
+  .dobra-7  { z-index: 7;  }
+  .dobra-8  { z-index: 8;  }
+  .dobra-9  { z-index: 9;  }
+  .dobra-10 { z-index: 10; }
+
+  /* Neon button border – traveling shimmer line */
+  @keyframes neonShimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes neonGlow {
+    0%, 100% { opacity: 0.5; }
+    50%      { opacity: 1; }
+  }
+  .btn-neon {
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+  }
+  .btn-neon::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(196,140,86,0.15) 15%,
+      rgba(196,140,86,0.8) 30%,
+      rgba(240,212,168,1) 42%,
+      rgba(196,140,86,0.8) 54%,
+      rgba(143,57,61,0.6) 70%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    z-index: -1;
+    animation: neonShimmer 3.5s ease-in-out infinite;
+    opacity: 0.7;
+    transition: opacity 0.4s ease;
+  }
+  .btn-neon:hover::before {
+    opacity: 1;
+  }
+  .btn-neon::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: inherit;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(196,140,86,0.12) 20%,
+      rgba(196,140,86,0.25) 40%,
+      rgba(143,57,61,0.2) 60%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    z-index: -2;
+    filter: blur(10px);
+    animation: neonShimmer 3.5s ease-in-out infinite, neonGlow 2.5s ease-in-out infinite;
+  }
+  .btn-neon-gold::before {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(196,140,86,0.15) 15%,
+      rgba(240,212,168,0.9) 35%,
+      rgba(196,140,86,1) 50%,
+      rgba(143,57,61,0.5) 70%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+  }
+  .btn-neon-gold::after {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(240,212,168,0.1) 20%,
+      rgba(196,140,86,0.2) 40%,
+      rgba(143,57,61,0.15) 60%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+  }
+  .btn-neon-white::before {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255,255,255,0.15) 15%,
+      rgba(255,255,255,0.7) 35%,
+      rgba(240,212,168,0.5) 50%,
+      rgba(196,140,86,0.4) 65%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+  }
+  .btn-neon-white::after {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255,255,255,0.08) 20%,
+      rgba(196,140,86,0.15) 40%,
+      rgba(255,255,255,0.1) 60%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+  }
+
+  /* Hero CTA – darker gold gradient + slower shimmer */
+  .btn-hero-cta {
+    background: linear-gradient(135deg, #A06A3C 0%, #8B5A2B 40%, #6D4420 100%);
+    color: #FFFFFF;
+  }
+  .btn-hero-cta::before {
+    animation-duration: 7s;
+    opacity: 0.8;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(196,140,86,0.25) 15%,
+      rgba(210,160,100,0.7) 35%,
+      rgba(196,140,86,0.7) 50%,
+      rgba(143,57,61,0.4) 70%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+  }
+  .btn-hero-cta:hover::before {
+    opacity: 1;
+  }
+  .btn-hero-cta::after {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(160,106,60,0.12) 20%,
+      rgba(160,106,60,0.22) 40%,
+      rgba(143,57,61,0.15) 60%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: neonGlow 4s ease-in-out infinite;
+  }
+</style>
+</head>
+<body class="bg-cream text-dark antialiased relative">
+
+<!-- Vertical Grid Lines -->
+<div class="fixed inset-0 pointer-events-none z-50 flex justify-center w-full mix-blend-multiply opacity-[0.03]">
+  <div class="w-full max-w-[88rem] h-full flex justify-between px-6 lg:px-12">
+    <div class="w-px h-full bg-current"></div>
+    <div class="w-px h-full bg-current hidden md:block"></div>
+    <div class="w-px h-full bg-current hidden lg:block"></div>
+    <div class="w-px h-full bg-current"></div>
+  </div>
+</div>
+
+<!-- Navigation -->
+<nav id="main-nav" class="z-[100] w-full pt-6 pb-6 fixed top-0 transition-all duration-300 nav-glass">
+  <div class="max-w-[88rem] mx-auto px-6 lg:px-12 flex items-center justify-between">
+    <a class="flex items-center gap-3 group" href="#">
+      <img src="assets/logo.png" alt="Silveira Soares" class="nav-logo h-10 md:h-12 transition-transform group-hover:scale-110"/>
+    </a>
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium tracking-tight opacity-80">
+      <a class="hover:opacity-100 transition-opacity font-geist text-white" href="#inicio">Início</a>
+      <a class="hover:opacity-100 transition-opacity font-geist text-white" href="servicos.html">Serviços</a>
+      <a class="hover:opacity-100 transition-opacity font-geist text-white" href="quem-somos.html">Quem Somos</a>
+      <a class="hover:opacity-100 transition-opacity font-geist text-white" href="conteudo.html">Conteúdo</a>
+      <a class="hover:opacity-100 transition-opacity font-geist text-white" href="trabalhe-conosco.html">Trabalhe Conosco</a>
+    </div>
+    <div class="flex gap-3 items-center">
+      <!-- Desktop: social icons + portal button -->
+      <div class="hidden md:flex items-center gap-3">
+        <a href="https://www.instagram.com/silveirasoarescontabilidade/" target="_blank" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all text-white/70 hover:text-white" aria-label="Instagram">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 448 512" fill="currentColor"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/p/Silveira-Soares-100063722786446/" target="_blank" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all text-white/70 hover:text-white" aria-label="Facebook">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 512 512" fill="currentColor"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/silveirasoares/" target="_blank" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all text-white/70 hover:text-white" aria-label="LinkedIn">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 448 512" fill="currentColor"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
+        </a>
+      </div>
+      <a class="hidden md:inline-flex btn-neon btn-beam bg-dark text-cream px-5 py-2.5 rounded-full text-sm font-medium transition-transform hover:scale-105 font-geist" href="https://onvio.com.br/clientcenter/pt/auth" target="_blank">
+        PORTAL DO CLIENTE
+      </a>
+      <!-- Mobile: social icons + hamburger -->
+      <div class="flex md:hidden items-center gap-2">
+        <a href="https://www.instagram.com/silveirasoarescontabilidade/" target="_blank" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all text-white/70 hover:text-white" aria-label="Instagram">
+          <svg class="w-4 h-4" viewBox="0 0 448 512" fill="currentColor"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/p/Silveira-Soares-100063722786446/" target="_blank" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all text-white/70 hover:text-white" aria-label="Facebook">
+          <svg class="w-4 h-4" viewBox="0 0 512 512" fill="currentColor"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/silveirasoares/" target="_blank" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all text-white/70 hover:text-white" aria-label="LinkedIn">
+          <svg class="w-4 h-4" viewBox="0 0 448 512" fill="currentColor"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
+        </a>
+        <button aria-label="Menu" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all text-white cursor-pointer" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Mobile Menu -->
+  <div class="hidden md:hidden absolute top-full left-0 w-full border-b border-white/10 shadow-2xl z-[200] mt-2" id="mobile-menu" style="background: rgba(44, 40, 36, 0.92); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%);">
+    <div class="flex flex-col gap-1 px-6 py-6 font-geist">
+      <a class="text-lg tracking-tight font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-xl px-4 py-3 transition-all" href="#inicio" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Início</a>
+      <a class="text-lg tracking-tight font-medium text-white/60 hover:text-white hover:bg-white/10 rounded-xl px-4 py-3 transition-all" href="servicos.html">Serviços</a>
+      <a class="text-lg tracking-tight font-medium text-white/60 hover:text-white hover:bg-white/10 rounded-xl px-4 py-3 transition-all" href="quem-somos.html">Quem Somos</a>
+      <a class="text-lg tracking-tight font-medium text-white/60 hover:text-white hover:bg-white/10 rounded-xl px-4 py-3 transition-all" href="conteudo.html">Conteúdo</a>
+      <a class="text-lg tracking-tight font-medium text-white/60 hover:text-white hover:bg-white/10 rounded-xl px-4 py-3 transition-all" href="trabalhe-conosco.html">Trabalhe Conosco</a>
+      <div class="w-full h-px bg-white/10 my-2"></div>
+      <a class="btn-neon btn-beam bg-dark text-cream w-full rounded-full text-sm font-semibold py-3 flex items-center justify-center gap-2 font-geist" href="https://onvio.com.br/clientcenter/pt/auth" target="_blank">
+        PORTAL DO CLIENTE
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ==================== HERO ==================== -->
+<section id="inicio" class="dobra dobra-1" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;">
+  <img src="assets/background01.webp" alt="Sede Silveira Soares" class="absolute top-0 left-0 w-full h-full object-cover object-[85%_center]" fetchpriority="high" decoding="async" loading="eager"/>
+  <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(44,40,36,0.65);z-index:10;"></div>
+  <div class="max-w-[88rem] mx-auto px-6 lg:px-12 w-full relative z-20 flex-grow flex flex-col justify-center pt-32 pb-20">
+    <h1 class="text-5xl md:text-7xl lg:text-[5.5rem] font-medium tracking-tighter leading-[0.95] mb-8 text-white font-jakarta font-light max-w-4xl">
+      Conheça a nossa <span class="text-gold font-semibold">sede</span>.
+    </h1>
+    <p class="text-xl md:text-2xl text-white/90 font-geist font-light max-w-3xl mb-14 leading-relaxed">
+      Aqui, você encontrará uma estrutura completa e tecnologicamente avançada para atender às demandas da contabilidade moderna.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 items-start">
+      <a class="btn-neon btn-neon-gold btn-beam btn-hero-cta inline-flex items-center gap-2 px-9 py-4 rounded-full text-sm font-bold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(139,90,43,0.5)] font-geist" href="https://api.whatsapp.com/send/?phone=5551981611213&text=Oi%21+Visitei+seu+site+e+gostaria+de+saber+mais+informa%C3%A7%C3%B5es+sobre+seus+servi%C3%A7os.&type=phone_number&app_absent=0" target="_blank">
+        <span>SEJA NOSSO CLIENTE</span>
+        <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+      <a class="btn-neon btn-neon-white inline-flex items-center gap-2 border border-white/30 text-white px-8 py-4 rounded-full text-sm font-medium transition-all hover:bg-white/10 hover:border-white/50 font-geist" href="#servicos">
+        <span>NOSSOS SERVIÇOS</span>
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="w-full border-t border-white/20 pt-6 pb-4 relative z-20">
+    <div class="max-w-[88rem] mx-auto px-6 lg:px-12 grid grid-cols-2 md:grid-cols-4 gap-6 text-xs tracking-tight font-medium text-white/60">
+      <div class="flex items-center gap-3 font-geist"><span class="text-gold">01</span> Gestão Tributária</div>
+      <div class="flex items-center gap-3 font-geist"><span class="text-gold">02</span> Contabilidade</div>
+      <div class="flex items-center gap-3 font-geist"><span class="text-gold">03</span> Departamento Pessoal</div>
+      <div class="flex items-center gap-3 font-geist"><span class="text-gold">04</span> Planejamento Estratégico</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== NÚMEROS / STATS ==================== -->
+<section class="py-16 bg-cream border-y border-black/5 relative dobra dobra-2">
+  <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent"></div>
+  <div class="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent"></div>
+  <div class="max-w-[88rem] mx-auto px-6 lg:px-12">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div class="reveal">
+        <p class="text-4xl md:text-5xl font-jakarta font-light stat-number mb-2" data-count="20" data-prefix="+">0</p>
+        <p class="text-sm opacity-60 font-geist uppercase tracking-wider">Anos de Experiência</p>
+      </div>
+      <div class="reveal" style="transition-delay:0.1s">
+        <p class="text-4xl md:text-5xl font-jakarta font-light stat-number mb-2" data-count="1300" data-prefix="+">0</p>
+        <p class="text-sm opacity-60 font-geist uppercase tracking-wider">Clientes Atendidos</p>
+      </div>
+      <div class="reveal" style="transition-delay:0.2s">
+        <p class="text-4xl md:text-5xl font-jakarta font-light stat-number mb-2" data-count="30" data-prefix="+">0</p>
+        <p class="text-sm opacity-60 font-geist uppercase tracking-wider">Profissionais</p>
+      </div>
+      <div class="reveal" style="transition-delay:0.3s">
+        <p class="text-4xl md:text-5xl font-jakarta font-light stat-number mb-2" data-count="100" data-suffix="%">0</p>
+        <p class="text-sm opacity-60 font-geist uppercase tracking-wider">Comprometimento</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== QUEM SOMOS ==================== -->
+<section class="py-28 md:py-36 bg-cream section-container relative dobra dobra-3">
+  <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-black/10 to-transparent"></div>
+  <div class="max-w-[88rem] mx-auto px-6 lg:px-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+      <div class="lg:col-span-5 reveal-left">
+        <div class="relative rounded-2xl overflow-hidden group">
+          <img src="assets/equipe.webp" alt="Equipe Silveira Soares" class="w-full h-auto transition-transform duration-1000 group-hover:scale-105" loading="lazy" decoding="async"/>
+          <div class="absolute inset-0 bg-accent/10 pointer-events-none"></div>
+        </div>
+      </div>
+      <div class="lg:col-span-7 reveal-right" style="transition-delay:0.15s">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl tracking-tighter font-jakarta font-light mb-8 leading-[1.05]">
+          Conheça a <span class="text-accent font-semibold">Silveira Soares</span>.
+        </h2>
+        <p class="text-lg opacity-80 font-normal leading-[1.7] mb-12 font-geist max-w-xl no-orphan">
+          Somos uma empresa de gestão Tributária e Contábil com mais de <span class="text-accent font-semibold">20 anos</span> de experiência e especializados em planejamento tributário para alcançar o melhor resultado para a sua empresa.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a class="btn-neon btn-beam inline-flex items-center gap-2 bg-dark text-cream px-7 py-3.5 rounded-full text-sm font-semibold transition-transform hover:scale-105 font-geist" href="https://api.whatsapp.com/send/?phone=5551981611213&text=Oi%21+Visitei+seu+site+e+gostaria+de+saber+mais+informa%C3%A7%C3%B5es+sobre+seus+servi%C3%A7os.&type=phone_number&app_absent=0" target="_blank">
+            <span>SEJA NOSSO CLIENTE</span>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a class="inline-flex items-center gap-2 border border-dark/20 text-dark px-7 py-3.5 rounded-full text-sm font-medium transition-all hover:bg-dark/5 font-geist" href="#contato">
+            <span>FALE CONOSCO</span>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== NOSSA HISTÓRIA / VIDEO ==================== -->
+<section id="quem-somos" class="py-28 md:py-36 bg-warmgray text-cream dark-section relative overflow-hidden dobra dobra-4">
+  <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent z-[1]"></div>
+  <!-- Decorative glow -->
+  <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-gold/5 rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="max-w-[88rem] mx-auto px-6 lg:px-12 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+      <div class="reveal-left">
+        <h2 class="text-4xl md:text-5xl lg:text-[3.5rem] tracking-tighter font-jakarta font-light mb-8 leading-[1.05]">
+          Assista ao vídeo e<br/>conheça sobre nós.
+        </h2>
+        <p class="text-lg opacity-70 leading-[1.7] font-geist no-orphan">
+          Descubra a trajetória de uma empresa que combina tradição, inovação e compromisso com a qualidade em serviços contábeis e tributários.
+        </p>
+      </div>
+      <div class="reveal-scale" style="transition-delay:0.15s">
+        <div class="video-wrapper card-flashlight">
+          <div class="card-content">
+            <video
+              class="w-full block"
+              controls
+              controlslist="nodownload"
+              loop
+              muted
+              playsinline
+              preload="none"
+              poster="assets/background01.webp"
+              src="assets/video-institucional.mp4"
+            ></video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== MARQUEE ==================== -->
+<section class="text-cream py-5 overflow-hidden marquee-mask relative dobra dobra-5 border-y border-white/5">
+  <div class="absolute inset-0 z-0 bg-warmgray"></div>
+  <div class="absolute inset-0 bg-dark/85 z-[1]"></div>
+  <div class="animate-marquee flex items-center gap-10 text-[0.65rem] md:text-xs font-light tracking-[0.35em] whitespace-nowrap uppercase font-geist relative z-10">
+    <span class="opacity-40">Gestão Tributária</span>
+    <span class="text-gold/20 text-[0.5rem]">?</span>
+    <span class="opacity-40">Contabilidade</span>
+    <span class="text-gold/20 text-[0.5rem]">?</span>
+    <span class="opacity-40">Planejamento</span>
+    <span class="text-gold/20 text-[0.5rem]">?</span>
+    <span class="opacity-40">Elisão Fiscal</span>
+    <span class="text-gold/20 text-[0.5rem]">?</span>
+    <span class="opacity-40">Consultoria</span>
+    <span class="text-gold/20 text-[0.5rem]">?</span>
+    <span class="opacity-40">Gestão Tributária</span>
+    <span class="text-gold/20 text-[0.5rem]">?</span>
+    <span class="opacity-40">Contabilidade</span>
+    <span class="text-gold/20 text-[0.5rem]">?</span>
+    <span class="opacity-40">Planejamento</span>
+    <span class="text-gold/20 text-[0.5rem]">?</span>
+    <span class="opacity-40">Elisão Fiscal</span>
+    <span class="text-gold/20 text-[0.5rem]">?</span>
+    <span class="opacity-40">Consultoria</span>
+    <span class="text-gold/20 text-[0.5rem]">?</span>
+  </div>
+</section>
+
+<!-- ==================== NOSSOS SERVIÇOS ==================== -->
+<section id="servicos" class="py-28 md:py-36 bg-cream section-container relative z-10">
+  <div class="max-w-[88rem] mx-auto px-6 lg:px-12">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
+      <div class="reveal-left">
+        <h2 class="text-5xl md:text-6xl lg:text-7xl tracking-tighter font-jakarta font-light leading-[1.05]">Nossos Serviços</h2>
+      </div>
+      <a class="btn-neon btn-beam bg-dark text-cream px-7 py-3.5 rounded-full text-sm font-semibold transition-transform hover:scale-105 font-geist inline-flex items-center gap-2 flex-shrink-0 reveal-right" href="https://api.whatsapp.com/send/?phone=5551981611213&text=Oi%21+Visitei+seu+site+e+gostaria+de+saber+mais+informa%C3%A7%C3%B5es+sobre+seus+servi%C3%A7os.&type=phone_number&app_absent=0" target="_blank">
+        <span>QUERO CONTRATAR</span>
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <p class="text-lg opacity-80 leading-[1.7] font-geist max-w-3xl mb-16 no-orphan">
+      Soluções para melhorar a performance da sua empresa. Estamos comprometidos em oferecer serviços de alto impacto e em construir relacionamentos duradouros com nossos clientes.
+    </p>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Escrituração Contábil -->
+      <div class="service-card service-card-stack p-10 flex flex-col items-start group cursor-pointer reveal-scale" style="transition-delay:0.05s; --stack-top: 120px;">
+        <div class="icon-wrapper w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/10 to-gold/10 flex items-center justify-center mb-6">
+          <img src="assets/servicos/escrituracao-contabil.webp" alt="Escrituração Contábil" class="w-10 h-10" loading="lazy" decoding="async"/>
+        </div>
+        <div class="card-line mb-4"></div>
+        <h3 class="font-semibold tracking-tight mb-3 font-geist text-xl">Escrituração Contábil</h3>
+        <p class="text-sm opacity-60 font-geist leading-relaxed">Registro preciso de todas as operações financeiras da empresa, garantindo transparência e conformidade.</p>
+      </div>
+
+      <!-- Gestão Tributária -->
+      <div class="service-card service-card-stack p-10 flex flex-col items-start group cursor-pointer reveal-scale" style="transition-delay:0.1s; --stack-top: 145px;">
+        <div class="icon-wrapper w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/10 to-gold/10 flex items-center justify-center mb-6">
+          <img src="assets/servicos/gestao-tributaria.webp" alt="Gestão Tributária" class="w-10 h-10" loading="lazy" decoding="async"/>
+        </div>
+        <div class="card-line mb-4"></div>
+        <h3 class="font-semibold tracking-tight mb-3 font-geist text-xl">Gestão Tributária</h3>
+        <p class="text-sm opacity-60 font-geist leading-relaxed">Planejamento tributário estratégico para minimizar cargas fiscais e maximizar resultados.</p>
+      </div>
+
+      <!-- Escrita Fiscal -->
+      <div class="service-card service-card-stack p-10 flex flex-col items-start group cursor-pointer reveal-scale" style="transition-delay:0.15s; --stack-top: 170px;">
+        <div class="icon-wrapper w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/10 to-gold/10 flex items-center justify-center mb-6">
+          <img src="assets/servicos/escrita-fiscal.webp" alt="Escrita Fiscal" class="w-10 h-10" loading="lazy" decoding="async"/>
+        </div>
+        <div class="card-line mb-4"></div>
+        <h3 class="font-semibold tracking-tight mb-3 font-geist text-xl">Escrita Fiscal</h3>
+        <p class="text-sm opacity-60 font-geist leading-relaxed">Controle completo de obrigações fiscais e apuração de impostos com agilidade.</p>
+      </div>
+
+      <!-- Departamento Pessoal -->
+      <div class="service-card service-card-stack p-10 flex flex-col items-start group cursor-pointer reveal-scale" style="transition-delay:0.2s; --stack-top: 195px;">
+        <div class="icon-wrapper w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/10 to-gold/10 flex items-center justify-center mb-6">
+          <img src="assets/servicos/departamento-pessoal.webp" alt="Departamento Pessoal" class="w-10 h-10" loading="lazy" decoding="async"/>
+        </div>
+        <div class="card-line mb-4"></div>
+        <h3 class="font-semibold tracking-tight mb-3 font-geist text-xl">Departamento Pessoal</h3>
+        <p class="text-sm opacity-60 font-geist leading-relaxed">Gestão completa de folha de pagamento e obrigações trabalhistas.</p>
+      </div>
+
+      <!-- Gestão Societária -->
+      <div class="service-card service-card-stack p-10 flex flex-col items-start group cursor-pointer reveal-scale" style="transition-delay:0.25s; --stack-top: 220px;">
+        <div class="icon-wrapper w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/10 to-gold/10 flex items-center justify-center mb-6">
+          <img src="assets/servicos/gestao-societaria.webp" alt="Gestão Societária" class="w-10 h-10" loading="lazy" decoding="async"/>
+        </div>
+        <div class="card-line mb-4"></div>
+        <h3 class="font-semibold tracking-tight mb-3 font-geist text-xl">Gestão Societária</h3>
+        <p class="text-sm opacity-60 font-geist leading-relaxed">Assessoria completa para administração e conformidade societária da sua empresa.</p>
+      </div>
+
+      <!-- Contabilidade -->
+      <div class="service-card service-card-stack p-10 flex flex-col items-start group cursor-pointer reveal-scale" style="transition-delay:0.3s; --stack-top: 245px;">
+        <div class="icon-wrapper w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/10 to-gold/10 flex items-center justify-center mb-6">
+          <img src="assets/servicos/contabilidade.webp" alt="Contabilidade" class="w-10 h-10" loading="lazy" decoding="async"/>
+        </div>
+        <div class="card-line mb-4"></div>
+        <h3 class="font-semibold tracking-tight mb-3 font-geist text-xl">Contabilidade</h3>
+        <p class="text-sm opacity-60 font-geist leading-relaxed">Serviços contábeis completos com precisão, transparência e tecnologia.</p>
+      </div>
+
+      <!-- Planejamento Estratégico -->
+      <div class="service-card service-card-stack p-10 flex flex-col items-start group cursor-pointer reveal-scale" style="transition-delay:0.35s; --stack-top: 270px;">
+        <div class="icon-wrapper w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/10 to-gold/10 flex items-center justify-center mb-6">
+          <img src="assets/servicos/planejamento-estrategico.webp" alt="Planejamento Estratégico" class="w-10 h-10" loading="lazy" decoding="async"/>
+        </div>
+        <div class="card-line mb-4"></div>
+        <h3 class="font-semibold tracking-tight mb-3 font-geist text-xl">Planejamento Estratégico</h3>
+        <p class="text-sm opacity-60 font-geist leading-relaxed">Definição de metas e estratégias para crescimento sustentável do seu negócio.</p>
+      </div>
+      </div>
+    </div>
+</section>
+
+<!-- ==================== DEPOIMENTOS ==================== -->
+<section id="depoimentos" class="py-28 md:py-36 bg-cream section-container relative dobra dobra-7 overflow-hidden">
+  <div class="max-w-[88rem] mx-auto px-6 lg:px-12">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl lg:text-6xl tracking-tighter font-jakarta font-light reveal">O que dizem nossos clientes</h2>
+      <p class="text-lg opacity-70 mt-4 font-geist reveal" style="transition-delay:0.1s">Mensagens dos nossos clientes parceiros.</p>
+    </div>
+  </div>
+
+  <div class="flex items-center justify-center gap-2 mb-8 reveal">
+    <svg class="w-4 h-4" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+    <span class="text-sm font-geist font-medium tracking-wide text-dark/70 uppercase">Avaliações no Google</span>
+  </div>
+
+  <div class="testimonial-carousel">
+    <div class="testimonial-track">
+      <!-- Set 1 -->
+      <div class="testimonial-card p-8 flex-shrink-0 w-[380px]">
+        <span class="quote-mark">&ldquo;</span>
+        <div class="relative z-10">
+          <div class="flex gap-1 mb-4" style="margin-left:-2px;">
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-[0.935rem] text-dark/65 leading-[1.8] font-geist italic no-orphan mb-5">&ldquo;Ótima empresa de contabilidade, excelência no atendimento ao cliente em todos assuntos, seja no setor fiscal, contábil, pessoal, societário, são tratados de maneira profissional com agilidade e precisão nas soluções.&rdquo;</p>
+          <p class="text-xs font-geist font-semibold text-dark/70">Thomaz Cadaval</p>
+        </div>
+      </div>
+      <div class="testimonial-card p-8 flex-shrink-0 w-[380px]">
+        <span class="quote-mark">&ldquo;</span>
+        <div class="relative z-10">
+                    <div class="flex gap-1 mb-4" style="margin-left:-2px;">
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-[0.935rem] text-dark/65 leading-[1.8] font-geist italic no-orphan mb-5">&ldquo;Melhor empresa de contabilidade, super bem recepcionada e atendida, tudo de qualidade, a empresa trabalha com humanidade, comprometimento e carisma.&rdquo;</p>
+          <p class="text-xs font-geist font-semibold text-dark/70">Mariam Cordeiro</p>
+        </div>
+      </div>
+      <div class="testimonial-card p-8 flex-shrink-0 w-[380px]">
+        <span class="quote-mark">&ldquo;</span>
+        <div class="relative z-10">
+                    <div class="flex gap-1 mb-4" style="margin-left:-2px;">
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-[0.935rem] text-dark/65 leading-[1.8] font-geist italic no-orphan mb-5">&ldquo;Ótima empresa! Cuidam de nossos assuntos de forma profissional e com extrema competência desde 2000. Podem confiar plenamente.&rdquo;</p>
+          <p class="text-xs font-geist font-semibold text-dark/70">Sandro Rogério Souza</p>
+        </div>
+      </div>
+      <div class="testimonial-card p-8 flex-shrink-0 w-[380px]">
+        <span class="quote-mark">&ldquo;</span>
+        <div class="relative z-10">
+                    <div class="flex gap-1 mb-4" style="margin-left:-2px;">
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-[0.935rem] text-dark/65 leading-[1.8] font-geist italic no-orphan mb-5">&ldquo;Excelente empresa!&rdquo;</p>
+          <p class="text-xs font-geist font-semibold text-dark/70">Alessandro Wagner</p>
+        </div>
+      </div>
+<!-- Set 2 (clone for seamless infinite loop) -->
+      <div class="testimonial-card p-8 flex-shrink-0 w-[380px]">
+        <span class="quote-mark">&ldquo;</span>
+        <div class="relative z-10">
+                    <div class="flex gap-1 mb-4" style="margin-left:-2px;">
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-[0.935rem] text-dark/65 leading-[1.8] font-geist italic no-orphan mb-5">&ldquo;Ótima empresa de contabilidade, excelência no atendimento ao cliente em todos assuntos, seja no setor fiscal, contábil, pessoal, societário, são tratados de maneira profissional com agilidade e precisão nas soluções.&rdquo;</p>
+          <p class="text-xs font-geist font-semibold text-dark/70">Thomaz Cadaval</p>
+        </div>
+      </div>
+      <div class="testimonial-card p-8 flex-shrink-0 w-[380px]">
+        <span class="quote-mark">&ldquo;</span>
+        <div class="relative z-10">
+                    <div class="flex gap-1 mb-4" style="margin-left:-2px;">
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-[0.935rem] text-dark/65 leading-[1.8] font-geist italic no-orphan mb-5">&ldquo;Melhor empresa de contabilidade, super bem recepcionada e atendida, tudo de qualidade, a empresa trabalha com humanidade, comprometimento e carisma.&rdquo;</p>
+          <p class="text-xs font-geist font-semibold text-dark/70">Mariam Cordeiro</p>
+        </div>
+      </div>
+      <div class="testimonial-card p-8 flex-shrink-0 w-[380px]">
+        <span class="quote-mark">&ldquo;</span>
+        <div class="relative z-10">
+                    <div class="flex gap-1 mb-4" style="margin-left:-2px;">
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-[0.935rem] text-dark/65 leading-[1.8] font-geist italic no-orphan mb-5">&ldquo;Ótima empresa! Cuidam de nossos assuntos de forma profissional e com extrema competência desde 2000. Podem confiar plenamente.&rdquo;</p>
+          <p class="text-xs font-geist font-semibold text-dark/70">Sandro Rogério Souza</p>
+        </div>
+      </div>
+      <div class="testimonial-card p-8 flex-shrink-0 w-[380px]">
+        <span class="quote-mark">&ldquo;</span>
+        <div class="relative z-10">
+                    <div class="flex gap-1 mb-4" style="margin-left:-2px;">
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-gold flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-[0.935rem] text-dark/65 leading-[1.8] font-geist italic no-orphan mb-5">&ldquo;Excelente empresa!&rdquo;</p>
+          <p class="text-xs font-geist font-semibold text-dark/70">Alessandro Wagner</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONTATO ==================== -->
+<section id="contato" class="relative min-h-[70vh] flex items-center justify-center overflow-hidden dobra dobra-8">
+  <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline preload="none" poster="assets/background01.webp" src="background-video.mp4"></video>
+  <div class="absolute inset-0 bg-dark/70 z-[1]"></div>
+  <div class="relative z-10 max-w-[88rem] mx-auto px-6 lg:px-12 w-full py-20">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl md:text-5xl lg:text-6xl tracking-tighter font-jakarta font-light text-white reveal">Fale Conosco</h2>
+      <p class="text-lg text-white/70 mt-4 font-geist reveal" style="transition-delay:0.1s">Estamos prontos para atender você.</p>
+    </div>
+    <div class="max-w-4xl mx-auto">
+      <div class="rounded-3xl p-8 md:p-12 reveal-scale" style="background: rgba(255,255,255,0.10); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border: 1px solid rgba(255,255,255,0.18); box-shadow: 0 30px 60px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2);">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+          <!-- Coluna Esquerda: Telefone -->
+          <div class="space-y-6">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-gold flex-shrink-0">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div>
+                <h3 class="font-jakarta font-semibold text-white text-lg">Telefone</h3>
+                <a href="tel:+555135250037" class="text-sm text-white/60 font-geist hover:text-gold transition-colors">(51) 3525-0037</a>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-gold flex-shrink-0">
+                <svg class="w-6 h-6" viewBox="0 0 448 512" fill="currentColor"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+              </div>
+              <div>
+                <h3 class="font-jakarta font-semibold text-white text-lg">WhatsApp</h3>
+                <a href="https://api.whatsapp.com/send/?phone=5551981611213" target="_blank" class="text-sm text-white/60 font-geist hover:text-gold transition-colors">(51) 98161-1213</a>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-gold flex-shrink-0">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </div>
+              <div>
+                <h3 class="font-jakarta font-semibold text-white text-lg">E-mail</h3>
+                <a href="mailto:contato@silveirasoares.com.br" class="text-sm text-white/60 font-geist hover:text-gold transition-colors">contato@silveirasoares.com.br</a>
+              </div>
+            </div>
+          </div>
+          <!-- Coluna Direita: Endereço + Mapa -->
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-gold flex-shrink-0">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <h3 class="font-jakarta font-semibold text-white text-lg">Endereço</h3>
+                <p class="text-sm text-white/60 font-geist leading-relaxed">Rua João Pessoa, 180<br/>Pátria Nova, Novo Hamburgo - RS</p>
+                <a href="https://maps.google.com/?q=Rua+João+Pessoa+180+Pátria+Nova+Novo+Hamburgo+RS" target="_blank" class="inline-flex items-center gap-1.5 mt-2 text-xs text-gold font-geist font-semibold hover:text-white transition-colors">
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  Ver no Google Maps
+                </a>
+              </div>
+            </div>
+            <div class="relative rounded-2xl overflow-hidden h-52" style="border: 2px solid rgba(196,140,86,0.25); box-shadow: 0 0 30px rgba(196,140,86,0.10), inset 0 0 20px rgba(0,0,0,0.2);">
+              <div class="absolute inset-0 rounded-2xl pointer-events-none z-10" style="border: 1px solid rgba(255,255,255,0.10);"></div>
+              <iframe class="w-full h-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3473.5!2d-51.13!3d-29.76!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjnCsDQ1JzM2LjAiUyA1McKwMDcnNDguMCJX!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" style="border:0; filter: grayscale(0.5) contrast(1.05) brightness(0.95);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização Silveira Soares"></iframe>
+              <div class="absolute bottom-3 right-3 z-10 bg-dark/80 backdrop-blur-md text-gold text-[10px] font-geist font-semibold px-3 py-1.5 rounded-full border border-gold/20 flex items-center gap-1.5">
+                <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Pátria Nova, NH
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-10 text-center">
+          <a class="btn-neon btn-neon-gold btn-beam inline-flex items-center gap-2 bg-gradient-to-r from-gold to-[#d49d68] text-dark px-8 py-4 rounded-full text-sm font-bold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(196,140,86,0.4)] font-geist" href="https://api.whatsapp.com/send/?phone=5551981611213&text=Oi%21+Visitei+seu+site+e+gostaria+de+saber+mais+informa%C3%A7%C3%B5es+sobre+seus+servi%C3%A7os.&type=phone_number&app_absent=0" target="_blank">
+            <span>FALE CONOSCO PELO WHATSAPP</span>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="relative z-10 bg-dark/80 backdrop-blur-xl text-cream pt-12 pb-8 border-t border-white/10">
+  <div class="max-w-[88rem] mx-auto px-6 lg:px-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-8">
+      <div>
+        <img src="assets/logo.png" alt="Silveira Soares" class="h-10 mb-4"/>
+        <p class="text-sm opacity-60 font-geist leading-relaxed max-w-xs">Empresa de gestão Tributária e Contábil com mais de 20 anos de experiência.</p>
+      </div>
+      <div>
+        <p class="font-medium tracking-tight mb-4 text-sm uppercase opacity-50 font-geist">Menu</p>
+        <nav class="flex flex-col gap-2">
+          <a class="opacity-70 hover:opacity-100 transition-opacity font-geist text-sm" href="#inicio">Início</a>
+          <a class="opacity-70 hover:opacity-100 transition-opacity font-geist text-sm" href="servicos.html">Serviços</a>
+          <a class="opacity-70 hover:opacity-100 transition-opacity font-geist text-sm" href="quem-somos.html">Quem Somos</a>
+          <a class="opacity-70 hover:opacity-100 transition-opacity font-geist text-sm" href="conteudo.html">Conteúdo</a>
+          <a class="opacity-70 hover:opacity-100 transition-opacity font-geist text-sm" href="trabalhe-conosco.html">Trabalhe Conosco</a>
+        </nav>
+      </div>
+      <div>
+        <p class="font-medium tracking-tight mb-4 text-sm uppercase opacity-50 font-geist">Contato</p>
+        <div class="flex flex-col gap-2 text-sm font-geist opacity-70">
+          <p>contato@silveirasoares.com.br</p>
+          <p>(51) 98161-1213</p>
+          <p>(51) 3525-0037</p>
+          <p>Rua João Pessoa, 180, Pátria Nova, Novo Hamburgo - RS</p>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-center">
+      <p class="text-xs opacity-40 font-geist">Copyright 2026 &copy; Silveira Soares. Todos os Direitos Reservados.</p>
+      <div class="flex gap-4 text-xs opacity-40">
+        <a class="hover:opacity-100 transition-opacity font-geist" href="politicas-de-privacidade.html">Políticas de Privacidade</a>
+        <a class="hover:opacity-100 transition-opacity font-geist" href="termos-de-uso.html">Termos de Uso</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- LGPD Cookie Consent -->
+<div id="lgpd-overlay" class="fixed inset-0 z-[300] bg-black/60 backdrop-blur-sm items-center justify-center p-6" style="display:none;">
+  <div class="bg-cream max-w-xl w-full rounded-3xl p-8 md:p-10 shadow-2xl relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent via-gold to-accent"></div>
+    <div class="flex items-start gap-4 mb-6">
+      <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 mt-1">
+        <svg class="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div>
+        <h3 class="font-jakarta font-semibold text-lg tracking-tight mb-1">Privacidade e Cookies</h3>
+        <p class="text-sm opacity-60 font-geist leading-relaxed">
+          Utilizamos cookies para melhorar sua experiência em nosso site, conforme a <strong>Lei Geral de Proteção de Dados (LGPD)</strong>. Cookies são pequenos arquivos armazenados no seu dispositivo que nos ajudam a personalizar conteúdo, analisar tráfego e funcionamento do site.
+        </p>
+      </div>
+    </div>
+    <div class="border-t border-black/5 pt-5 mb-6">
+      <p class="text-xs opacity-50 font-geist leading-relaxed">
+        Ao continuar navegando, você concorda com o uso de cookies. Você pode gerenciar suas preferências a qualquer momento. Para mais detalhes, leia nossas
+        <a href="politicas-de-privacidade.html" class="text-accent underline hover:text-gold transition-colors">Políticas de Privacidade</a> e
+        <a href="termos-de-uso.html" class="text-accent underline hover:text-gold transition-colors">Termos de Uso</a>.
+      </p>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-3">
+      <button onclick="lgpdAccept()" class="flex-1 bg-dark text-cream px-6 py-3 rounded-full text-sm font-semibold font-geist transition-all hover:scale-105 cursor-pointer">
+        Aceitar Todos
+      </button>
+      <button onclick="lgpdReject()" class="flex-1 border border-dark/20 text-dark px-6 py-3 rounded-full text-sm font-medium font-geist transition-all hover:bg-dark/5 cursor-pointer">
+        Apenas Essenciais
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- WhatsApp Float -->
+<a href="https://api.whatsapp.com/send/?phone=5551981611213&text=Oi%21+Visitei+seu+site+e+gostaria+de+saber+mais+informa%C3%A7%C3%B5es+sobre+seus+servi%C3%A7os.&type=phone_number&app_absent=0" target="_blank" class="fixed bottom-6 right-6 z-[200] w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition-all hover:scale-110 float-anim group" aria-label="WhatsApp">
+  <span class="absolute inset-0 rounded-full bg-green-500 animate-ping opacity-20"></span>
+  <svg class="w-7 h-7 text-white relative z-10" viewBox="0 0 448 512" fill="currentColor"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+</a>
+
+<script>
+
+// Flashlight card effect - track mouse on all .card-flashlight elements
+document.addEventListener('mousemove', function(e) {
+  document.querySelectorAll('.card-flashlight').forEach(function(card) {
+    var rect = card.getBoundingClientRect();
+    card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+    card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+  });
+});
+
+// Scroll reveal with IntersectionObserver
+var revealObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(function(el) {
+  revealObserver.observe(el);
+});
+
+// Parallax effect on scroll
+var parallaxLayers = document.querySelectorAll('.parallax-layer');
+var ticking = false;
+window.addEventListener('scroll', function() {
+  if (!ticking) {
+    window.requestAnimationFrame(function() {
+      var scrollY = window.pageYOffset;
+      parallaxLayers.forEach(function(layer) {
+        var speed = parseFloat(layer.getAttribute('data-parallax-speed')) || 0.15;
+        var parent = layer.parentElement;
+        var rect = parent.getBoundingClientRect();
+        if (rect.bottom > 0 && rect.top < window.innerHeight) {
+          var offset = (scrollY - parent.offsetTop) * speed;
+          layer.style.transform = 'translateY(' + offset + 'px)';
+        }
+      });
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+
+// Video play on click for mobile (browsers block autoplay without interaction)
+document.querySelectorAll('.video-wrapper video').forEach(function(video) {
+  video.addEventListener('click', function() {
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+    }
+  });
+});
+
+// Navbar scroll effect – always transparent glass
+var mainNav = document.getElementById('main-nav');
+window.addEventListener('scroll', function() {
+  if (window.scrollY > 100) {
+    mainNav.classList.add('nav-scrolled');
+  } else {
+    mainNav.classList.remove('nav-scrolled');
+  }
+});
+
+
+// LGPD Cookie Consent
+(function() {
+  var consent = localStorage.getItem('lgpd-consent');
+  if (!consent) {
+    var overlay = document.getElementById('lgpd-overlay');
+    setTimeout(function() {
+      overlay.style.display = 'flex';
+    }, 1500);
+  }
+})();
+function lgpdAccept() {
+  localStorage.setItem('lgpd-consent', 'accepted');
+  document.getElementById('lgpd-overlay').style.display = 'none';
+}
+function lgpdReject() {
+  localStorage.setItem('lgpd-consent', 'essential');
+  document.getElementById('lgpd-overlay').style.display = 'none';
+}
+
+// Counter animation
+function animateCount(el) {
+  var target = parseInt(el.getAttribute('data-count'), 10);
+  var prefix = el.getAttribute('data-prefix') || '';
+  var suffix = el.getAttribute('data-suffix') || '';
+  var duration = 2000;
+  var start = performance.now();
+
+  function step(now) {
+    var progress = Math.min((now - start) / duration, 1);
+    var eased = 1 - Math.pow(1 - progress, 3);
+    var current = Math.round(eased * target);
+    el.textContent = prefix + current + suffix;
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    }
+  }
+  requestAnimationFrame(step);
+}
+
+var counterObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+      entry.target.classList.add('counted');
+      animateCount(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.stat-number[data-count]').forEach(function(el) {
+  counterObserver.observe(el);
+});
+
+</script>
+
+</body>
+</html>
